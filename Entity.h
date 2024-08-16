@@ -3,6 +3,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+enum GameObjectType {
+    PLAYER,
+    ENEMY
+};
+
 struct GLAttributes {
     int stride;
     int offset;
@@ -10,6 +15,7 @@ struct GLAttributes {
 
 struct Entity {
     GLAttributes glAttributes;
+    GameObjectType gameObjectType;
     std::vector<glm::vec3> vertices;
     glm::vec3 position;
     glm::vec3 velocity;
@@ -45,6 +51,8 @@ void printMat4(const char* name, glm::mat4 mat) {
 }
 
 void entityPrintValues(Entity entity) {
+    printf("Type: %d\n", entity.gameObjectType);
+
     printVec3("Position", entity.position);
     printVec3("Velocity", entity.velocity);
     printVec3("Color", entity.color);

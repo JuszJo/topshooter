@@ -6,14 +6,24 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
-
 #include "Entity.h"
+
+// SQUARE COMPONENTS
+struct Size {
+    float width;
+    float height;
+};
+
+// 
+
 
 Entity createSquare() {
     Entity entity;
 
     entity.glAttributes.stride = 3;
     entity.glAttributes.offset = 0;
+
+    entity.gameObjectType = PLAYER;
 
     entity.position = glm::vec3(0.0f, 0.0f, 0.0f);
     entity.velocity = glm::vec3(0.0f, 0.0f, 0.0f);

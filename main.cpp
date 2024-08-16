@@ -123,7 +123,6 @@ int main() {
 
 
         // RENDER
-
         int modelLocation = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(square.model));
 
