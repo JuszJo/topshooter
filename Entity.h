@@ -14,6 +14,7 @@ struct Entity {
     std::vector<glm::vec3> vertices;
     glm::vec3 position;
     glm::vec3 velocity;
+    glm::vec2 size;
     glm::vec3 color;
     glm::mat4 model;
     GLuint VAO, VBO, EBO;
@@ -39,6 +40,10 @@ void genGLAttributes(Entity* entity) {
 
 void setColor(Entity* entity, glm::vec3 newColor) {
     entity->color = newColor;
+}
+
+void setSize(Entity* entity, glm::vec2 newSize) {
+    entity->size = newSize;
 }
 
 void setPosition(Entity* entity, glm::vec3 newPosition) {
