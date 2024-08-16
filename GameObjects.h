@@ -13,4 +13,6 @@
 #include "RenderEntity.h"
 #include "CollisionEntity.h"
 
+#include "GameEvents.h"
+
 #include "Collision.h"

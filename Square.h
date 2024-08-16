@@ -26,6 +26,7 @@ Entity createSquare() {
 
 void updateSquare(Entity* square) {
     resetTransform(square);
+    
 
     if(key.w) {
         square->velocity.y = 4.0f;
@@ -46,7 +47,7 @@ void updateSquare(Entity* square) {
         square->velocity.y = 0.0f;
     }
 
-    // float mag = std::sqrt((square->velocity.x * square->velocity.x + square->velocity.y * square->velocity.y));
+    float mag = std::sqrt((square->velocity.x * square->velocity.x + square->velocity.y * square->velocity.y));
 
     if(mag > 4.0f) {
         float nx = square->velocity.x / mag;
@@ -61,7 +62,7 @@ void updateSquare(Entity* square) {
 
     // mag = std::sqrt((square->velocity.x * square->velocity.x + square->velocity.y * square->velocity.y));
 
-    printf("x: %f, y: %f mag: %f\n", square->velocity.x, square->velocity.y, mag);
+    // printf("x: %f, y: %f mag: %f\n", square->velocity.x, square->velocity.y, mag);
 
     square->position.x += square->velocity.x;
     square->position.y += square->velocity.y;

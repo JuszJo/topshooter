@@ -20,31 +20,43 @@ Game createGame() {
 }
 
 void GameUpdate(Game& game) {
-    updateSquare(&game.player.at(0));
+    playerShoot(game.bullets);
 
     std::vector<CollisionEntity> collisionEntities;
 
     for(Entity& player : game.player) {
+        updateSquare(&game.player.at(0));
+
         CollisionEntity collisionEntity = createCollisionEntity(player.gameObjectType, player.position, player.size);
 
         collisionEntities.push_back(collisionEntity);
     }
 
-    checkWallCollision(collisionEntities);
+    for(Bullet& bullet : game.bullets) {
+        updateBullet(bullet);
 
-    applyTransform(&game.player.at(0));
+        CollisionEntity collisionEntity = createCollisionEntity(bullet.entity.gameObjectType, bullet.entity.position, bullet.entity.size);
+
+        collisionEntities.push_back(collisionEntity);
+    }
+
+    checkWallCollision(collisionEntities);
 }
 
 void GameRender(Game& game, GLuint shaderProgram) {
     std::vector<RenderEntity> renderEntities;
 
     for(Entity& player : game.player) {
+        applyTransform(&player);
+
         RenderEntity renderEntity = createRenderEntity(player.gameObjectType, player.color, player.model, player.VAO);
 
         renderEntities.push_back(renderEntity);
     }
 
     for(Bullet& bullet : game.bullets) {
+        applyTransform(&bullet.entity);
+
         RenderEntity renderEntity = createRenderEntity(bullet.entity.gameObjectType, bullet.entity.color, bullet.entity.model, bullet.entity.VAO);
 
         renderEntities.push_back(renderEntity);

@@ -3,8 +3,10 @@ struct Bullet {
     GameObjectType owner;
 };
 
-Bullet createBullet() {
+Bullet createBullet(GameObjectType owner) {
     Bullet bullet;
+
+    bullet.owner = owner;
 
     bullet.entity.glAttributes.stride = 3;
     bullet.entity.glAttributes.offset = 0;
@@ -27,4 +29,12 @@ Bullet createBullet() {
     genGLAttributes(&bullet.entity);
 
     return bullet;
+}
+
+void updateBullet(Bullet& bullet) {
+    resetTransform(&bullet.entity);
+
+    // entityPrintValues(bullet.entity);
+
+    bullet.entity.position.y += 1.0f;
 }
