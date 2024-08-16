@@ -23,3 +23,19 @@ Entity createSquare() {
 
     return entity;
 }
+
+void updateSquare(Entity* square) {
+    resetTransform(square);
+
+    if(key.a) {
+        square->velocity.x = -4.0f;
+    }
+    if(key.d) {
+        square->velocity.x = 4.0f;
+    }
+    if(!key.a && !key.d) {
+        square->velocity.x = 0.0f;
+    }
+
+    square->position.x += square->velocity.x;
+}

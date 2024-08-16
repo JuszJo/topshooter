@@ -6,6 +6,7 @@ struct Game {
 
     // GAME OBJECTS
     std::vector<Entity> player;
+    std::vector<Bullet> bullets;
 };
 
 Game createGame() {
@@ -18,11 +19,23 @@ Game createGame() {
     return game;
 }
 
-void GameUpdate(Game game) {
+void GameUpdate(Game& game) {
+    updateSquare(&game.player.at(0));
 
+    std::vector<CollisionEntity> collisionEntities;
+
+    for(Entity& player : game.player) {
+        CollisionEntity collisionEntity = createCollisionEntity(player.gameObjectType, player.position, player.size);
+
+        collisionEntities.push_back(collisionEntity);
+    }
+
+    checkWallCollision(collisionEntities);
+
+    applyTransform(&game.player.at(0));
 }
 
-void GameRender(Game game, GLuint shaderProgram) {
+void GameRender(Game& game, GLuint shaderProgram) {
     std::vector<RenderEntity> renderEntities;
 
     for(Entity& player : game.player) {
@@ -31,9 +44,13 @@ void GameRender(Game game, GLuint shaderProgram) {
         renderEntities.push_back(renderEntity);
     }
 
+    for(Bullet& bullet : game.bullets) {
+        RenderEntity renderEntity = createRenderEntity(bullet.entity.gameObjectType, bullet.entity.color, bullet.entity.model, bullet.entity.VAO);
+
+        renderEntities.push_back(renderEntity);
+    }
+
     for(RenderEntity renderEntity : renderEntities) {
-        std::cout << "Key D: " << key.d << "\n";
-        
         int modelLocation = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(renderEntity.model));
 

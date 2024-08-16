@@ -1,6 +1,7 @@
 enum GameObjectType {
     PLAYER,
-    ENEMY
+    ENEMY,
+    BULLET
 };
 
 struct GLAttributes {

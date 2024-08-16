@@ -9,4 +9,8 @@
 
 #include "Entity.h"
 #include "Square.h"
+#include "Bullet.h"
 #include "RenderEntity.h"
+#include "CollisionEntity.h"
+
+#include "Collision.h"
