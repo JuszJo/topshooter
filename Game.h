@@ -32,6 +32,8 @@ void GameRender(Game game, GLuint shaderProgram) {
     }
 
     for(RenderEntity renderEntity : renderEntities) {
+        std::cout << "Key D: " << key.d << "\n";
+        
         int modelLocation = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(renderEntity.model));
 

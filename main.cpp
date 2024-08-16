@@ -10,6 +10,7 @@
 
 // SOURCE
 #include "Shader.h"
+#include "KeyInput.h"
 #include "Game.h"
 
 
@@ -100,6 +101,8 @@ int main() {
         glfwPollEvents();
         glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        inputListener(window);
 
         glUseProgram(shaderProgram);
 
