@@ -40,6 +40,7 @@ void GameUpdate(Game& game) {
         collisionEntities.push_back(collisionEntity);
     }
 
+    // TODO: PUT IN RESPECTIVE ENTITIES UPDATE METHOD
     checkWallCollision(collisionEntities);
 }
 
