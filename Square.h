@@ -1,13 +1,3 @@
-#include <iostream>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/string_cast.hpp>
-
-#include "Entity.h"
-
 Entity createSquare() {
     Entity entity;
 
@@ -32,23 +22,3 @@ Entity createSquare() {
 
     return entity;
 }
-
-/* void setColor(Circle* circle, glm::vec3 newColor) {
-    circle->color = newColor;
-}
-
-void setPosition(Circle* circle, glm::vec3 newPosition) {
-    circle->position = newPosition;
-}
-
-void setVelocity(Circle* circle, glm::vec3 newVelocity) {
-    circle->velocity = newVelocity;
-}
-
-void applyTransform(Circle* circle) {
-    circle->model = glm::translate(circle->model, circle->position);
-}
-
-void resetTransform(Circle* circle) {
-    circle->model = glm::mat4(1.0f);
-} */

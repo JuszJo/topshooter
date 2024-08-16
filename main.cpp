@@ -9,9 +9,7 @@
 #include <random>
 
 // SOURCE
-// #include "Entity.h"
 #include "Game.h"
-// #include "Square.h"
 
 
 
@@ -127,7 +125,7 @@ int main() {
     }
 
     glfwTerminate();
-    
+
     return 0;
 }
 

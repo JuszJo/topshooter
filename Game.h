@@ -1,4 +1,4 @@
-#include "Square.h"
+#include "GameObjects.h"
 
 struct Game {
     int* screenWidth;

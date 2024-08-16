@@ -1,7 +1,4 @@
-#include <vector>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+
 
 enum GameObjectType {
     PLAYER,
@@ -62,3 +59,23 @@ void entityPrintValues(Entity entity) {
         printVec3("Vertex Data", vertex);
     }
 }
+
+/* void setColor(Circle* circle, glm::vec3 newColor) {
+    circle->color = newColor;
+}
+
+void setPosition(Circle* circle, glm::vec3 newPosition) {
+    circle->position = newPosition;
+}
+
+void setVelocity(Circle* circle, glm::vec3 newVelocity) {
+    circle->velocity = newVelocity;
+}
+
+void applyTransform(Circle* circle) {
+    circle->model = glm::translate(circle->model, circle->position);
+}
+
+void resetTransform(Circle* circle) {
+    circle->model = glm::mat4(1.0f);
+} */
