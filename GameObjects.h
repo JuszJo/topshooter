@@ -9,3 +9,4 @@
 
 #include "Entity.h"
 #include "Square.h"
+#include "RenderEntity.h"
