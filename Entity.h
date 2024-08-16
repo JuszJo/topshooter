@@ -1,5 +1,3 @@
-
-
 enum GameObjectType {
     PLAYER,
     ENEMY
@@ -37,6 +35,29 @@ void genGLAttributes(Entity* entity) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * entity->indices.size(), &entity->indices[0], GL_STATIC_DRAW); */
 }
 
+// HELPERS
+
+void setColor(Entity* entity, glm::vec3 newColor) {
+    entity->color = newColor;
+}
+
+void setPosition(Entity* entity, glm::vec3 newPosition) {
+    entity->position = newPosition;
+}
+
+void setVelocity(Entity* entity, glm::vec3 newVelocity) {
+    entity->velocity = newVelocity;
+}
+
+void applyTransform(Entity* entity) {
+    entity->model = glm::translate(entity->model, entity->position);
+}
+
+void resetTransform(Entity* entity) {
+    entity->model = glm::mat4(1.0f);
+}
+
+
 // VALIDATION & ERROR CHECKING
 
 void printVec3(const char* name, glm::vec3 vec) {
@@ -59,23 +80,3 @@ void entityPrintValues(Entity entity) {
         printVec3("Vertex Data", vertex);
     }
 }
-
-/* void setColor(Circle* circle, glm::vec3 newColor) {
-    circle->color = newColor;
-}
-
-void setPosition(Circle* circle, glm::vec3 newPosition) {
-    circle->position = newPosition;
-}
-
-void setVelocity(Circle* circle, glm::vec3 newVelocity) {
-    circle->velocity = newVelocity;
-}
-
-void applyTransform(Circle* circle) {
-    circle->model = glm::translate(circle->model, circle->position);
-}
-
-void resetTransform(Circle* circle) {
-    circle->model = glm::mat4(1.0f);
-} */
