@@ -98,6 +98,8 @@ int main() {
 
     Entity square = createSquare();
 
+    // entityPrintValues(square);
+
     glUseProgram(shaderProgram);
 
     glm::mat4 projection = glm::mat4(1.0f);

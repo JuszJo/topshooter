@@ -9,16 +9,6 @@
 
 #include "Entity.h"
 
-// struct Entity {
-//     GLAttributes glAttributes;
-//     std::vector<glm::vec3> vertices;
-//     glm::vec3 position;
-//     glm::vec3 velocity;
-//     glm::vec3 color;
-//     glm::mat4 model;
-//     GLuint VAO, VBO, EBO;
-// };
-
 Entity createSquare() {
     Entity entity;
 
@@ -40,27 +30,6 @@ Entity createSquare() {
     genGLAttributes(&entity);
 
     return entity;
-}
-
-// VALIDATION & ERROR CHECKING
-
-void printVec3(const char* name, glm::vec3 vec) {
-    std::cout << name << ": " << vec.x << " " << vec.y << " " << vec.z << "\n";
-}
-
-void printMat4(const char* name, glm::mat4 mat) {
-    std::cout << name << ": " << glm::to_string(mat) << "\n";
-}
-
-void entityPrintValues(Entity entity) {
-    printVec3("Position", entity.position);
-    printVec3("Velocity", entity.velocity);
-    printVec3("Color", entity.color);
-    printMat4("model", entity.model);
-
-    for(glm::vec3 vertex : entity.vertices) {
-        printVec3("Vertex Data", vertex);
-    }
 }
 
 /* void setColor(Circle* circle, glm::vec3 newColor) {

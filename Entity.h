@@ -33,3 +33,24 @@ void genGLAttributes(Entity* entity) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entity->EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * entity->indices.size(), &entity->indices[0], GL_STATIC_DRAW); */
 }
+
+// VALIDATION & ERROR CHECKING
+
+void printVec3(const char* name, glm::vec3 vec) {
+    std::cout << name << ": " << vec.x << " " << vec.y << " " << vec.z << "\n";
+}
+
+void printMat4(const char* name, glm::mat4 mat) {
+    std::cout << name << ": " << glm::to_string(mat) << "\n";
+}
+
+void entityPrintValues(Entity entity) {
+    printVec3("Position", entity.position);
+    printVec3("Velocity", entity.velocity);
+    printVec3("Color", entity.color);
+    printMat4("model", entity.model);
+
+    for(glm::vec3 vertex : entity.vertices) {
+        printVec3("Vertex Data", vertex);
+    }
+}
