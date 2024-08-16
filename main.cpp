@@ -10,7 +10,8 @@
 
 // SOURCE
 // #include "Entity.h"
-#include "Square.h"
+#include "Game.h"
+// #include "Square.h"
 
 
 
@@ -70,12 +71,13 @@ unsigned int createShaderProgram(const char* vertexSource, const char* fragmentS
 int main() {
     GLFWwindow* window;
 
-    if (!glfwInit())
-        return -1;
+    if (!glfwInit()) return -1;
 
     window = glfwCreateWindow(screenWidth, screenHeight, "Top Down", NULL, NULL);
+
     if (!window) {
         glfwTerminate();
+
         return -1;
     }
 
@@ -90,15 +92,10 @@ int main() {
 
     GLuint shaderProgram = createShaderProgram(vs, fs);
 
-    // float vertices[] = {
-    //     0.0f, 0.0f, 0.0f,
-    //     100.0f, 0.0f, 0.0f,
-    //     50.0f,  100.0f, 0.0f
-    // };
+    Game TopDownGame = createGame();
 
-    Entity square = createSquare();
-
-    // entityPrintValues(square);
+    TopDownGame.screenWidth = &screenWidth;
+    TopDownGame.screenHeight = &screenHeight;
 
     glUseProgram(shaderProgram);
 
@@ -120,41 +117,17 @@ int main() {
         glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
 
         // UPDATE
-
-
-        // RENDER
-        int modelLocation = glGetUniformLocation(shaderProgram, "model");
-        glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(square.model));
-
-        int colorLocation = glGetUniformLocation(shaderProgram, "color");
-        glUniform3fv(colorLocation, 1, glm::value_ptr(square.color));
-
-        glBindVertexArray(square.VAO);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
+        GameUpdate(TopDownGame);
 
         // RENDER
-        // for (Circle& circle : circles) {
-        //     // std::cout << circle.position.x << "\n";
-        //     applyTransform(&circle);
-        //     int modelLocation = glGetUniformLocation(shaderProgram, "model");
-        //     glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(circle.model));
-
-        //     int colorLocation = glGetUniformLocation(shaderProgram, "color");
-        //     glUniform3fv(colorLocation, 1, glm::value_ptr(circle.color));
-
-        //     glBindVertexArray(circle.VAO);
-        //     glDrawElements(GL_TRIANGLES, circle.indices.size(), GL_UNSIGNED_INT, 0);
-
-        //     resetTransform(&circle);
-        // }
-
+        GameRender(TopDownGame, shaderProgram);
 
         glfwSwapBuffers(window);
 
     }
 
     glfwTerminate();
+    
     return 0;
 }
 

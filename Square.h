@@ -8,15 +8,6 @@
 
 #include "Entity.h"
 
-// SQUARE COMPONENTS
-struct Size {
-    float width;
-    float height;
-};
-
-// 
-
-
 Entity createSquare() {
     Entity entity;
 
