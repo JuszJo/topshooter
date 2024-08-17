@@ -1,4 +1,6 @@
- bool didCollide(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
+struct Game;
+
+bool didCollide(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
     if(
         x1 + w1 > x2 &&
         x1 < x2 + w2 &&
@@ -26,6 +28,28 @@ void checkWallCollision(std::vector<CollisionEntity>& collisionEntities) {
         }
         if(entity.y + entity.height > 480.0f) {
             entity.y = 480.0f - entity.height;
+        }
+    }
+}
+
+void collisionUpdate(Game& game, std::vector<CollisionEntity>& collisionEntities) {
+    for(int i = 0; i < collisionEntities.size(); ++i) {
+        float x1 = collisionEntities.at(i).x;
+        float y1 = collisionEntities.at(i).y;
+        float w1 = collisionEntities.at(i).width;
+        float h1 = collisionEntities.at(i).height;
+
+        for(int j = i + 1; j < collisionEntities.size(); ++j) {
+            float x2 = collisionEntities.at(j).x;
+            float y2 = collisionEntities.at(j).y;
+            float w2 = collisionEntities.at(j).width;
+            float h2 = collisionEntities.at(j).height;
+
+            bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
+
+            if(collisionOccured) {
+                // printf("Collision Occured\n");
+            }
         }
     }
 }

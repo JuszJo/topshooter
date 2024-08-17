@@ -42,6 +42,7 @@ void GameUpdate(Game& game) {
 
     // TODO: PUT IN RESPECTIVE ENTITIES UPDATE METHOD
     checkWallCollision(collisionEntities);
+    collisionUpdate(game, collisionEntities);
 }
 
 void GameRender(Game& game, GLuint shaderProgram) {
