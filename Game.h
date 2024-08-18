@@ -4,9 +4,8 @@ struct Game {
     int* screenWidth;
     int* screenHeight;
 
-    // GAME OBJECTS
-    std::vector<Entity> player;
-    std::vector<Bullet> bullets;
+    // GAME Entities
+    GameEntities gameEntities;
 };
 
 Game createGame() {
@@ -14,25 +13,25 @@ Game createGame() {
 
     Entity square = createSquare();
 
-    game.player.push_back(square);
+    game.gameEntities.player.push_back(square);
 
     return game;
 }
 
 void GameUpdate(Game& game) {
-    playerShoot(game.bullets);
+    playerShoot(game.gameEntities.bullets);
 
     std::vector<CollisionEntity> collisionEntities;
 
-    for(Entity& player : game.player) {
-        updateSquare(&game.player.at(0));
+    for(Entity& player : game.gameEntities.player) {
+        updateSquare(&game.gameEntities.player.at(0));
 
         CollisionEntity collisionEntity = createCollisionEntity(player.gameObjectType, player.position, player.size);
 
         collisionEntities.push_back(collisionEntity);
     }
 
-    for(Bullet& bullet : game.bullets) {
+    for(Bullet& bullet : game.gameEntities.bullets) {
         updateBullet(bullet);
 
         CollisionEntity collisionEntity = createCollisionEntity(bullet.entity.gameObjectType, bullet.entity.position, bullet.entity.size);
@@ -42,13 +41,13 @@ void GameUpdate(Game& game) {
 
     // TODO: PUT IN RESPECTIVE ENTITIES UPDATE METHOD
     checkWallCollision(collisionEntities);
-    collisionUpdate(game, collisionEntities);
+    collisionUpdate(collisionEntities, game.gameEntities);
 }
 
 void GameRender(Game& game, GLuint shaderProgram) {
     std::vector<RenderEntity> renderEntities;
 
-    for(Entity& player : game.player) {
+    for(Entity& player : game.gameEntities.player) {
         applyTransform(&player);
 
         RenderEntity renderEntity = createRenderEntity(player.gameObjectType, player.color, player.model, player.VAO);
@@ -56,7 +55,7 @@ void GameRender(Game& game, GLuint shaderProgram) {
         renderEntities.push_back(renderEntity);
     }
 
-    for(Bullet& bullet : game.bullets) {
+    for(Bullet& bullet : game.gameEntities.bullets) {
         applyTransform(&bullet.entity);
 
         RenderEntity renderEntity = createRenderEntity(bullet.entity.gameObjectType, bullet.entity.color, bullet.entity.model, bullet.entity.VAO);

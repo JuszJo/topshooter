@@ -1,4 +1,4 @@
-struct Game;
+// struct Game;
 
 bool dont = false;
 
@@ -11,11 +11,11 @@ void playerShoot(std::vector<Bullet>& bullets) {
     }
 }
 
-void playerBulletCollision(CollisionEntity& entity, Game& game) {
+void playerBulletCollision(CollisionEntity& entity, GameEntities& gameEntities) {
     if(entity.gameObjectType == GameObjectType::PLAYER) {
-        // for(Entity& player : game.player) {
-        //     setPosition(&player, glm::vec3(0.0f, 0.0f, 0.0f));
-        // }
+        for(Entity& player : gameEntities.player) {
+            setPosition(&player, glm::vec3(0.0f, 0.0f, 0.0f));
+        }
 
     }
     else {

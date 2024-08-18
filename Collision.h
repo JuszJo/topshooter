@@ -1,4 +1,4 @@
-struct Game;
+// struct Game;
 
 bool didCollide(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2) {
     if(
@@ -32,19 +32,19 @@ void checkWallCollision(std::vector<CollisionEntity>& collisionEntities) {
     }
 }
 
-void resolveCollision(CollisionEntity& entity1, CollisionEntity& entity2, Game& game) {
+void resolveCollision(CollisionEntity& entity1, CollisionEntity& entity2, GameEntities& gameEntities) {
     std::map<GameObjectType, bool> collisionMap;
 
     collisionMap[entity1.gameObjectType] = true;
     collisionMap[entity2.gameObjectType] = true;
 
     if(collisionMap[GameObjectType::PLAYER] && collisionMap[GameObjectType::BULLET]) {
-        playerBulletCollision(entity1, game);
-        playerBulletCollision(entity2, game);
+        playerBulletCollision(entity1, gameEntities);
+        playerBulletCollision(entity2, gameEntities);
     }
 }
 
-void collisionUpdate(Game& game, std::vector<CollisionEntity>& collisionEntities) {
+void collisionUpdate(std::vector<CollisionEntity>& collisionEntities, GameEntities& gameEntities) {
     for(int i = 0; i < collisionEntities.size(); ++i) {
         CollisionEntity& entity1 = collisionEntities.at(i);
         float x1 = collisionEntities.at(i).x;
@@ -63,7 +63,7 @@ void collisionUpdate(Game& game, std::vector<CollisionEntity>& collisionEntities
 
             if(collisionOccured) {
                 // printf("Collision Occured\n");
-                resolveCollision(entity1, entity2, game);
+                resolveCollision(entity1, entity2, gameEntities);
             }
         }
     }
