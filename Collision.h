@@ -14,20 +14,37 @@ bool didCollide(float x1, float y1, float w1, float h1, float x2, float y2, floa
     }
 }
 
-void checkWallCollision(std::vector<CollisionEntity>& collisionEntities) {
-    for(CollisionEntity& entity : collisionEntities) {
+void checkWallCollision(GameEntities& gameEntities) {
+    for(Entity& player : gameEntities.player) {
         // printf("x: %f, y: %f\n", entity.x, entity.y);
-        if(entity.x < 0.0f) {
-            entity.x = 0.0f;
+        if(player.position.x < 0.0f) {
+            player.position.x = 0.0f;
         }
-        if(entity.x + entity.width > 640.0f) {
-            entity.x = 640.0f - entity.width;
+        if(player.position.x + player.size.x > 640.0f) {
+            player.position.x = 640.0f - player.size.x;
         }
-        if(entity.y < 0.0f) {
-            entity.y = 0.0f;
+        if(player.position.y < 0.0f) {
+            player.position.y = 0.0f;
         }
-        if(entity.y + entity.height > 480.0f) {
-            entity.y = 480.0f - entity.height;
+        if(player.position.y + player.size.y > 480.0f) {
+            player.position.y = 480.0f - player.size.y;
+        }
+    }
+
+    for(Bullet& bullet : gameEntities.bullets) {
+        // printf("x: %f, y: %f\n", entity.x, entity.y);
+        if(bullet.entity.position.x < 0.0f) {
+            bullet.entity.position.x = 0.0f;
+        }
+        if(bullet.entity.position.x + bullet.entity.size.x > 640.0f) {
+            bullet.entity.position.x = 640.0f - bullet.entity.size.x;
+        }
+        if(bullet.entity.position.y < 0.0f) {
+            bullet.entity.position.y = 0.0f;
+        }
+        if(bullet.entity.position.y + bullet.entity.size.y > 480.0f) {
+            // bullet.entity.position.y = 480.0f - bullet.entity.size.y;
+            bulletWallCollision(bullet);
         }
     }
 }
@@ -65,27 +82,4 @@ void collisionUpdate(GameEntities& gameEntities) {
             }
         }
     }
-
-    /* for(int i = 0; i < collisionEntities.size(); ++i) {
-        CollisionEntity& entity1 = collisionEntities.at(i);
-        float x1 = collisionEntities.at(i).x;
-        float y1 = collisionEntities.at(i).y;
-        float w1 = collisionEntities.at(i).width;
-        float h1 = collisionEntities.at(i).height;
-
-        for(int j = i + 1; j < collisionEntities.size(); ++j) {
-            CollisionEntity& entity2 = collisionEntities.at(j);
-            float x2 = collisionEntities.at(j).x;
-            float y2 = collisionEntities.at(j).y;
-            float w2 = collisionEntities.at(j).width;
-            float h2 = collisionEntities.at(j).height;
-
-            bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
-
-            if(collisionOccured) {
-                // printf("Collision Occured\n");
-                resolveCollision(entity1, entity2, gameEntities);
-            }
-        }
-    } */
 }
