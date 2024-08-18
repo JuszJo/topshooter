@@ -19,7 +19,7 @@ Game createGame() {
 }
 
 void GameUpdate(Game& game) {
-    playerShoot(game.gameEntities.bullets);
+    playerShoot(game.gameEntities.player.at(0), game.gameEntities.bullets);
 
     std::vector<CollisionEntity> collisionEntities;
 
