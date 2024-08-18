@@ -1,6 +1,8 @@
 Entity createSquare() {
     Entity entity;
 
+    entity.active = true;
+
     entity.glAttributes.stride = 3;
     entity.glAttributes.offset = 0;
 

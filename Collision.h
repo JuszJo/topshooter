@@ -32,7 +32,7 @@ void checkWallCollision(std::vector<CollisionEntity>& collisionEntities) {
     }
 }
 
-void resolveCollision(CollisionEntity& entity1, CollisionEntity& entity2, GameEntities& gameEntities) {
+/* void resolveCollision(CollisionEntity& entity1, CollisionEntity& entity2, GameEntities& gameEntities) {
     std::map<GameObjectType, bool> collisionMap;
 
     collisionMap[entity1.gameObjectType] = true;
@@ -42,10 +42,31 @@ void resolveCollision(CollisionEntity& entity1, CollisionEntity& entity2, GameEn
         playerBulletCollision(entity1, gameEntities);
         playerBulletCollision(entity2, gameEntities);
     }
-}
+} */
 
-void collisionUpdate(std::vector<CollisionEntity>& collisionEntities, GameEntities& gameEntities) {
-    for(int i = 0; i < collisionEntities.size(); ++i) {
+void collisionUpdate(GameEntities& gameEntities) {
+    // PLAYER BULLET
+    for(Entity& player : gameEntities.player) {
+        for(Bullet& bullet : gameEntities.bullets) {
+            float x1 = player.position.x;
+            float y1 = player.position.y;
+            float w1 = player.size.x;
+            float h1 = player.size.y;
+
+            float x2 = bullet.entity.position.x;
+            float y2 = bullet.entity.position.y;
+            float w2 = bullet.entity.size.x;
+            float h2 = bullet.entity.size.y;
+            
+            bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
+
+            if(collisionOccured) {
+                playerBulletCollision(player, bullet);
+            }
+        }
+    }
+
+    /* for(int i = 0; i < collisionEntities.size(); ++i) {
         CollisionEntity& entity1 = collisionEntities.at(i);
         float x1 = collisionEntities.at(i).x;
         float y1 = collisionEntities.at(i).y;
@@ -66,5 +87,5 @@ void collisionUpdate(std::vector<CollisionEntity>& collisionEntities, GameEntiti
                 resolveCollision(entity1, entity2, gameEntities);
             }
         }
-    }
+    } */
 }

@@ -10,6 +10,7 @@ struct GLAttributes {
 };
 
 struct Entity {
+    bool active;
     GLAttributes glAttributes;
     GameObjectType gameObjectType;
     std::vector<glm::vec3> vertices;

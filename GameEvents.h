@@ -40,14 +40,10 @@ void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
     }
 }
 
-void playerBulletCollision(CollisionEntity& entity, GameEntities& gameEntities) {
-    if(entity.gameObjectType == GameObjectType::PLAYER) {
-        for(Entity& player : gameEntities.player) {
-            setPosition(&player, glm::vec3(0.0f, 0.0f, 0.0f));
-        }
+void playerBulletCollision(Entity& player, Bullet& bullet) {
+    // PLAYER
+    setPosition(&player, glm::vec3(0.0f, 0.0f, 0.0f));
 
-    }
-    else {
-
-    }
+    // BULLET
+    bullet.entity.active = false;
 }

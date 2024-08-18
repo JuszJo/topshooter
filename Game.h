@@ -26,7 +26,7 @@ void GameUpdate(Game& game) {
     for(Entity& player : game.gameEntities.player) {
         updateSquare(&game.gameEntities.player.at(0));
 
-        CollisionEntity collisionEntity = createCollisionEntity(player.gameObjectType, player.position, player.size);
+        CollisionEntity collisionEntity = createCollisionEntity(player.gameObjectType, player.position, player.size, player.active);
 
         collisionEntities.push_back(collisionEntity);
     }
@@ -34,14 +34,18 @@ void GameUpdate(Game& game) {
     for(Bullet& bullet : game.gameEntities.bullets) {
         updateBullet(bullet);
 
-        CollisionEntity collisionEntity = createCollisionEntity(bullet.entity.gameObjectType, bullet.entity.position, bullet.entity.size);
+        CollisionEntity collisionEntity = createCollisionEntity(bullet.entity.gameObjectType, bullet.entity.position, bullet.entity.size, bullet.entity.active);
 
         collisionEntities.push_back(collisionEntity);
     }
 
     // TODO: PUT IN RESPECTIVE ENTITIES UPDATE METHOD
     checkWallCollision(collisionEntities);
-    collisionUpdate(collisionEntities, game.gameEntities);
+    collisionUpdate(game.gameEntities);
+
+    removeInactive(game.gameEntities);
+
+    // printf("b size: %d\n", game.gameEntities.bullets.size());
 }
 
 void GameRender(Game& game, GLuint shaderProgram) {

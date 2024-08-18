@@ -8,6 +8,8 @@ Bullet createBullet(GameObjectType owner) {
 
     bullet.owner = owner;
 
+    bullet.entity.active = true;
+
     bullet.entity.glAttributes.stride = 3;
     bullet.entity.glAttributes.offset = 0;
 
