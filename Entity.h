@@ -40,6 +40,29 @@ void genGLAttributes(Entity* entity) {
 
 // HELPERS
 
+Entity createEntity(GameObjectType type, float width, float height, glm::vec3 color) {
+    Entity entity;
+
+    entity.active = true;
+    entity.gameObjectType = type;
+
+    entity.position = glm::vec3(0.0f, 0.0f, 0.0f);
+    entity.velocity = glm::vec3(0.0f, 0.0f, 0.0f);
+    entity.size = glm::vec2(width, height);
+    entity.color = color;
+
+    entity.model = glm::mat4(1.0f);
+
+    entity.vertices = {
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(width, 0.0f, 0.0f),
+        glm::vec3(0.0f, height, 0.0f),
+        glm::vec3(width, height, 0.0f),
+    };
+
+    return entity;
+}
+
 void setColor(Entity* entity, glm::vec3 newColor) {
     entity->color = newColor;
 }
