@@ -28,6 +28,8 @@ Bullet createBullet(GameObjectType owner) {
 
     genGLAttributes(&bullet.entity);
 
+    setVelocity(&bullet.entity, glm::vec3(0.0f, 6.0f, 0.0f));
+
     return bullet;
 }
 
@@ -36,5 +38,6 @@ void updateBullet(Bullet& bullet) {
 
     // entityPrintValues(bullet.entity);
 
-    bullet.entity.position.y += 1.0f;
+    bullet.entity.position.x += bullet.entity.velocity.x;
+    bullet.entity.position.y += bullet.entity.velocity.y;
 }

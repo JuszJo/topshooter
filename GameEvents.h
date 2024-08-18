@@ -17,7 +17,7 @@ void updateShootBuffer(ShootBuffer& shootBuffer) {
     }
 }
 
-ShootBuffer playerShootBuffer = {50.0f, 0.0f, true};
+ShootBuffer playerShootBuffer = {20.0f, 0.0f, true};
 
 void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
     if(key.space && playerShootBuffer.ready) {
