@@ -47,3 +47,7 @@ void playerBulletCollision(Entity& player, Bullet& bullet) {
     // BULLET
     bullet.entity.active = false;
 }
+
+void bulletWallCollision(Bullet& bullet) {
+    bullet.entity.active = false;
+}
