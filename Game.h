@@ -12,8 +12,10 @@ Game createGame() {
     Game game;
 
     Entity square = createSquare();
+    Entity enemy = createEnemy();
 
     game.gameEntities.player.push_back(square);
+    game.gameEntities.enemies.push_back(enemy);
 
     return game;
 }
@@ -23,6 +25,10 @@ void GameUpdate(Game& game) {
 
     for(Entity& player : game.gameEntities.player) {
         updateSquare(&game.gameEntities.player.at(0));
+    }
+
+    for(Entity& enemy : game.gameEntities.enemies) {
+        updateEnemy(&enemy);
     }
 
     for(Bullet& bullet : game.gameEntities.bullets) {
@@ -47,6 +53,14 @@ void GameRender(Game& game, GLuint shaderProgram) {
         applyTransform(&player);
 
         RenderEntity renderEntity = createRenderEntity(player.gameObjectType, player.color, player.model, player.VAO);
+
+        renderEntities.push_back(renderEntity);
+    }
+    
+    for(Entity& enemy : game.gameEntities.enemies) {
+        applyTransform(&enemy);
+
+        RenderEntity renderEntity = createRenderEntity(enemy.gameObjectType, enemy.color, enemy.model, enemy.VAO);
 
         renderEntities.push_back(renderEntity);
     }

@@ -31,6 +31,22 @@ void checkWallCollision(GameEntities& gameEntities) {
         }
     }
 
+    for(Entity& enemy : gameEntities.enemies) {
+        // printf("x: %f, y: %f\n", entity.x, entity.y);
+        if(enemy.position.x < 0.0f) {
+            enemy.position.x = 0.0f;
+        }
+        if(enemy.position.x + enemy.size.x > 640.0f) {
+            enemy.position.x = 640.0f - enemy.size.x;
+        }
+        if(enemy.position.y < 0.0f) {
+            enemy.position.y = 0.0f;
+        }
+        if(enemy.position.y + enemy.size.y > 480.0f) {
+            enemy.position.y = 480.0f - enemy.size.y;
+        }
+    }
+
     for(Bullet& bullet : gameEntities.bullets) {
         // printf("x: %f, y: %f\n", entity.x, entity.y);
         if(bullet.entity.position.x < 0.0f) {

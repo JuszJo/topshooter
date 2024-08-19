@@ -3,6 +3,15 @@ struct Bullet {
     GameObjectType owner;
 };
 
+void moveBullet(Bullet& bullet, GameObjectType owner) {
+    if(owner == GameObjectType::PLAYER) {
+        setVelocity(&bullet.entity, glm::vec3(0.0f, 6.0f, 0.0f));
+    }
+    else if(owner == GameObjectType::ENEMY) {
+        setVelocity(&bullet.entity, glm::vec3(0.0f, -6.0f, 0.0f));
+    }
+}
+
 Bullet createBullet(GameObjectType owner) {
     Bullet bullet;
 
@@ -17,7 +26,7 @@ Bullet createBullet(GameObjectType owner) {
 
     genGLAttributes(&bullet.entity);
 
-    setVelocity(&bullet.entity, glm::vec3(0.0f, 6.0f, 0.0f));
+    moveBullet(bullet, owner);
 
     return bullet;
 }
