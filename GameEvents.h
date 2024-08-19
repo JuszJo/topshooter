@@ -51,7 +51,14 @@ void playerBulletCollision(Entity& player, Bullet& bullet) {
 // ENEMY
 
 void enemyShoot() {
-    
+
+}
+
+void enemyBulletCollision(Entity& enemy, Bullet& bullet) {
+    // ENEMY
+
+    // BULLET
+    bullet.entity.active = false;
 }
 
 

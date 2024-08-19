@@ -81,6 +81,8 @@ void collisionUpdate(GameEntities& gameEntities) {
     // PLAYER BULLET
     for(Entity& player : gameEntities.player) {
         for(Bullet& bullet : gameEntities.bullets) {
+            if(player.gameObjectType == bullet.owner) break;
+
             float x1 = player.position.x;
             float y1 = player.position.y;
             float w1 = player.size.x;
@@ -95,6 +97,30 @@ void collisionUpdate(GameEntities& gameEntities) {
 
             if(collisionOccured) {
                 playerBulletCollision(player, bullet);
+            }
+        }
+    }
+
+    // ENEMY BULLET
+    for(Entity& enemy : gameEntities.enemies) {
+        for(Bullet& bullet : gameEntities.bullets) {
+            if(enemy.gameObjectType == bullet.owner) break;
+
+            float x1 = enemy.position.x;
+            float y1 = enemy.position.y;
+            float w1 = enemy.size.x;
+            float h1 = enemy.size.y;
+
+            float x2 = bullet.entity.position.x;
+            float y2 = bullet.entity.position.y;
+            float w2 = bullet.entity.size.x;
+            float h2 = bullet.entity.size.y;
+            
+            bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
+
+            if(collisionOccured) {
+                // printf("collision\n");
+                enemyBulletCollision(enemy, bullet);
             }
         }
     }
