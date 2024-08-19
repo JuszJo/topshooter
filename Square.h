@@ -12,7 +12,6 @@ Entity createSquare() {
 void updateSquare(Entity* square) {
     resetTransform(square);
     
-
     if(key.w) {
         square->velocity.y = 4.0f;
     }
