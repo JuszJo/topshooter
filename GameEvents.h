@@ -50,8 +50,27 @@ void playerBulletCollision(Entity& player, Bullet& bullet) {
 
 // ENEMY
 
-void enemyShoot() {
+ShootBuffer enemyShootBuffer = {20.0f, 0.0f, true};
 
+void enemyShoot(Entity& enemy, std::vector<Bullet>& bullets) {
+    if(enemyAttackState == EnemyAttackState::SHOOTING && enemyShootBuffer.ready) {
+        // printf("Shoot %f\n", enemyShootBuffer.elaspedFrames);
+
+        enemyShootBuffer.ready = false;
+
+        Bullet bullet = createBullet(GameObjectType::ENEMY);
+
+        float x = enemy.position.x + (enemy.size.x / 2.0f) - (bullet.entity.size.x / 2.0f);
+        float y = enemy.position.y - 5.0f;
+
+        setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
+
+        bullets.push_back(bullet);
+    }
+
+    if(!enemyShootBuffer.ready) {
+        updateShootBuffer(enemyShootBuffer);
+    }
 }
 
 void enemyBulletCollision(Entity& enemy, Bullet& bullet) {

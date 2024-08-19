@@ -11,9 +11,60 @@ Entity createEnemy() {
     return entity;
 }
 
+enum EnemyAttackState {
+    NONE,
+    SHOOTING
+};
+
+enum EnemyMovementState {
+    IDLE,
+    LEFT,
+    RIGHT
+};
+
+EnemyMovementState enemyMovementState = EnemyMovementState::IDLE;
+EnemyAttackState enemyAttackState = EnemyAttackState::NONE;
+
+void switchEnemyMovementState(EnemyMovementState movementState) {
+    if(enemyMovementState != movementState) {
+        enemyMovementState = movementState;
+    }
+}
+
+void switchEnemyAttackState(EnemyAttackState attackState) {
+    if(enemyAttackState != attackState) {
+        enemyAttackState = attackState;
+    }
+}
+
+void checkEnemyState(Entity* enemy) {
+    if(enemyMovementState == EnemyMovementState::IDLE) {
+        // switchEnemyMovementState(EnemyMovementState::IDLE);
+        enemy->velocity.x = 0.0f;
+        enemy->velocity.y = 0.0f;
+    }
+    else if(enemyMovementState == EnemyMovementState::LEFT) {
+        // switchEnemyMovementState(EnemyMovementState::LEFT);
+        enemy->velocity.x = -4.0f;
+    }
+    else if(enemyMovementState == EnemyMovementState::RIGHT) {
+        // switchEnemyMovementState(EnemyMovementState::RIGHT);
+        enemy->velocity.x = 4.0f;
+    }
+    
+    if(enemyAttackState == EnemyAttackState::NONE) {
+        // switchEnemyAttackState(EnemyAttackState::IDLE);
+    }
+    else if(enemyAttackState == EnemyAttackState::SHOOTING) {
+        // switchEnemyAttackState(EnemyAttackState::SHOOTING);
+    }
+}
+
 void updateEnemy(Entity* enemy) {
     resetTransform(enemy);
-    
+
+    checkEnemyState(enemy);
+
     enemy->position.x += enemy->velocity.x;
     enemy->position.y += enemy->velocity.y;
 }
