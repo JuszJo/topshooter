@@ -8,12 +8,6 @@
 #include <vector>
 #include <random>
 
-// SOURCE
-#include "Shader.h"
-#include "KeyInput.h"
-#include "Game.h"
-
-
 float random(float lb, float ub) {
     static std::random_device rd;
     static std::mt19937 gen(rd());
@@ -24,6 +18,23 @@ float random(float lb, float ub) {
 
     return rand;
 }
+
+// SOURCE
+#include "Shader.h"
+#include "KeyInput.h"
+#include "Game.h"
+
+
+// float random(float lb, float ub) {
+//     static std::random_device rd;
+//     static std::mt19937 gen(rd());
+
+//     std::uniform_real_distribution<float> dist(lb, std::nextafter(ub, FLT_MAX));
+
+//     float rand = dist(gen);
+
+//     return rand;
+// }
 
 // glm::mat4 projection;
 int screenWidth = 640;
