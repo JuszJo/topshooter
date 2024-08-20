@@ -52,12 +52,12 @@ void checkEnemyState(Entity* enemy) {
         enemy->velocity.x = 4.0f;
     }
     
-    if(enemyAttackState == EnemyAttackState::NONE) {
-        // switchEnemyAttackState(EnemyAttackState::IDLE);
-    }
-    else if(enemyAttackState == EnemyAttackState::SHOOTING) {
-        // switchEnemyAttackState(EnemyAttackState::SHOOTING);
-    }
+    // if(enemyAttackState == EnemyAttackState::NONE) {
+    //     // switchEnemyAttackState(EnemyAttackState::IDLE);
+    // }
+    // else if(enemyAttackState == EnemyAttackState::SHOOTING) {
+    //     // switchEnemyAttackState(EnemyAttackState::SHOOTING);
+    // }
 }
 
 void updateEnemy(Entity* enemy) {

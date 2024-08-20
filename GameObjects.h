@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "Square.h"
 #include "Enemy.h"
+#include "EnemyAI.h"
 #include "Bullet.h"
 #include "RenderEntity.h"
 #include "CollisionEntity.h"

@@ -28,6 +28,10 @@ void GameUpdate(Game& game) {
     }
 
     for(Entity& enemy : game.gameEntities.enemies) {
+        enemyShoot(enemy, game.gameEntities.bullets);
+
+        seekPlayer(enemy, game.gameEntities.player.at(0));
+
         updateEnemy(&enemy);
     }
 
