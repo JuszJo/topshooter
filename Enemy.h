@@ -37,6 +37,8 @@ void switchEnemyAttackState(EnemyAttackState attackState) {
     }
 }
 
+// TODO: SET SHOOT VARIABLE THEN HANDLE IN EVENTS
+
 void checkEnemyState(Entity* enemy) {
     if(enemyMovementState == EnemyMovementState::IDLE) {
         // switchEnemyMovementState(EnemyMovementState::IDLE);
