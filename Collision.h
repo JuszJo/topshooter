@@ -56,7 +56,8 @@ void checkWallCollision(GameEntities& gameEntities) {
             bullet.entity.position.x = 640.0f - bullet.entity.size.x;
         }
         if(bullet.entity.position.y < 0.0f) {
-            bullet.entity.position.y = 0.0f;
+            // bullet.entity.position.y = 0.0f;
+            bulletWallCollision(bullet);
         }
         if(bullet.entity.position.y + bullet.entity.size.y > 480.0f) {
             // bullet.entity.position.y = 480.0f - bullet.entity.size.y;

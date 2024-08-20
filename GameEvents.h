@@ -42,7 +42,7 @@ void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
 
 void playerBulletCollision(Entity& player, Bullet& bullet) {
     // PLAYER
-    setPosition(&player, glm::vec3(0.0f, 0.0f, 0.0f));
+    setPosition(&player, glm::vec3((640.0f / 2.0f) - (player.size.x / 2.0f), 0.0f, 0.0f));
 
     // BULLET
     bullet.entity.active = false;
