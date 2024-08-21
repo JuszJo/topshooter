@@ -1,12 +1,5 @@
 // EVENTS
 
-// TODO: MAKE MORE GENERIC
-struct ShootBuffer {
-    float buffer;
-    float elaspedFrames;
-    bool ready;
-};
-
 void updateShootBuffer(ShootBuffer& shootBuffer) {
     shootBuffer.elaspedFrames += 1.0f;
 
@@ -50,30 +43,28 @@ void playerBulletCollision(Entity& player, Bullet& bullet) {
 
 // ENEMY
 
-ShootBuffer enemyShootBuffer = {20.0f, 0.0f, true};
+void enemyShoot(Enemy& enemy, std::vector<Bullet>& bullets) {
+    if(enemy.enemyAttackState == EnemyAttackState::SHOOTING && enemy.enemyShootBuffer.ready) {
+        // printf("Shoot %f\n", enemy.enemyShootBuffer.elaspedFrames);
 
-void enemyShoot(Entity& enemy, std::vector<Bullet>& bullets) {
-    if(enemyAttackState == EnemyAttackState::SHOOTING && enemyShootBuffer.ready) {
-        // printf("Shoot %f\n", enemyShootBuffer.elaspedFrames);
-
-        enemyShootBuffer.ready = false;
+        enemy.enemyShootBuffer.ready = false;
 
         Bullet bullet = createBullet(GameObjectType::ENEMY);
 
-        float x = enemy.position.x + (enemy.size.x / 2.0f) - (bullet.entity.size.x / 2.0f);
-        float y = enemy.position.y - 5.0f;
+        float x = enemy.entity.position.x + (enemy.entity.size.x / 2.0f) - (bullet.entity.size.x / 2.0f);
+        float y = enemy.entity.position.y - 5.0f;
 
         setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
 
         bullets.push_back(bullet);
     }
 
-    if(!enemyShootBuffer.ready) {
-        updateShootBuffer(enemyShootBuffer);
+    if(!enemy.enemyShootBuffer.ready) {
+        updateShootBuffer(enemy.enemyShootBuffer);
     }
 }
 
-void enemyBulletCollision(Entity& enemy, Bullet& bullet) {
+void enemyBulletCollision(Enemy& enemy, Bullet& bullet) {
     // ENEMY
 
     // BULLET

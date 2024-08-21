@@ -12,10 +12,14 @@ Game createGame() {
     Game game;
 
     Entity square = createSquare();
-    Entity enemy = createEnemy();
+    Enemy enemy = createEnemy();
+    Enemy enemy2 = createEnemy();
+
+    setPosition(&enemy2.entity, glm::vec3(10.0f, 430.0f, 0.0f));
 
     game.gameEntities.player.push_back(square);
     game.gameEntities.enemies.push_back(enemy);
+    game.gameEntities.enemies.push_back(enemy2);
 
     return game;
 }
@@ -27,8 +31,8 @@ void GameUpdate(Game& game) {
         updateSquare(&game.gameEntities.player.at(0));
     }
 
-    for(Entity& enemy : game.gameEntities.enemies) {
-        moveEnemy();
+    for(Enemy& enemy : game.gameEntities.enemies) {
+        moveEnemy(enemy);
 
         enemyShoot(enemy, game.gameEntities.bullets);
 
@@ -63,10 +67,10 @@ void GameRender(Game& game, GLuint shaderProgram) {
         renderEntities.push_back(renderEntity);
     }
     
-    for(Entity& enemy : game.gameEntities.enemies) {
-        applyTransform(&enemy);
+    for(Enemy& enemy : game.gameEntities.enemies) {
+        applyTransform(&enemy.entity);
 
-        RenderEntity renderEntity = createRenderEntity(enemy.gameObjectType, enemy.color, enemy.model, enemy.VAO);
+        RenderEntity renderEntity = createRenderEntity(enemy.entity.gameObjectType, enemy.entity.color, enemy.entity.model, enemy.entity.VAO);
 
         renderEntities.push_back(renderEntity);
     }

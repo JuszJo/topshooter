@@ -8,6 +8,12 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
+struct ShootBuffer {
+    float buffer;
+    float elaspedFrames;
+    bool ready;
+};
+
 #include "Entity.h"
 #include "Square.h"
 #include "Enemy.h"

@@ -31,19 +31,19 @@ void checkWallCollision(GameEntities& gameEntities) {
         }
     }
 
-    for(Entity& enemy : gameEntities.enemies) {
+    for(Enemy& enemy : gameEntities.enemies) {
         // printf("x: %f, y: %f\n", entity.x, entity.y);
-        if(enemy.position.x < 0.0f) {
-            enemy.position.x = 0.0f;
+        if(enemy.entity.position.x < 0.0f) {
+            enemy.entity.position.x = 0.0f;
         }
-        if(enemy.position.x + enemy.size.x > 640.0f) {
-            enemy.position.x = 640.0f - enemy.size.x;
+        if(enemy.entity.position.x + enemy.entity.size.x > 640.0f) {
+            enemy.entity.position.x = 640.0f - enemy.entity.size.x;
         }
-        if(enemy.position.y < 0.0f) {
-            enemy.position.y = 0.0f;
+        if(enemy.entity.position.y < 0.0f) {
+            enemy.entity.position.y = 0.0f;
         }
-        if(enemy.position.y + enemy.size.y > 480.0f) {
-            enemy.position.y = 480.0f - enemy.size.y;
+        if(enemy.entity.position.y + enemy.entity.size.y > 480.0f) {
+            enemy.entity.position.y = 480.0f - enemy.entity.size.y;
         }
     }
 
@@ -103,14 +103,14 @@ void collisionUpdate(GameEntities& gameEntities) {
     }
 
     // ENEMY BULLET
-    for(Entity& enemy : gameEntities.enemies) {
+    for(Enemy& enemy : gameEntities.enemies) {
         for(Bullet& bullet : gameEntities.bullets) {
-            if(enemy.gameObjectType == bullet.owner) break;
+            if(enemy.entity.gameObjectType == bullet.owner) break;
 
-            float x1 = enemy.position.x;
-            float y1 = enemy.position.y;
-            float w1 = enemy.size.x;
-            float h1 = enemy.size.y;
+            float x1 = enemy.entity.position.x;
+            float y1 = enemy.entity.position.y;
+            float w1 = enemy.entity.size.x;
+            float h1 = enemy.entity.size.y;
 
             float x2 = bullet.entity.position.x;
             float y2 = bullet.entity.position.y;

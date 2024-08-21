@@ -1,48 +1,45 @@
-void seekPlayer(Entity& enemy, Entity& player) {
+void seekPlayer(Enemy& enemy, Entity& player) {
     if(player.position.y > 100.0f) {
-        switchEnemyAttackState(EnemyAttackState::SHOOTING);
+        switchEnemyAttackState(enemy, EnemyAttackState::SHOOTING);
     }
     else {
-        switchEnemyAttackState(EnemyAttackState::NONE);
+        switchEnemyAttackState(enemy, EnemyAttackState::NONE);
     }
 
     if(
-        enemy.position.x + (enemy.size.x) / 2.0f > player.position.x &&
-        enemy.position.x + (enemy.size.x) / 2.0f < player.position.x + player.size.x
+        enemy.entity.position.x + (enemy.entity.size.x) / 2.0f > player.position.x &&
+        enemy.entity.position.x + (enemy.entity.size.x) / 2.0f < player.position.x + player.size.x
     ) {
-        switchEnemyAttackState(EnemyAttackState::SHOOTING);
+        switchEnemyAttackState(enemy, EnemyAttackState::SHOOTING);
     }
 }
 
-float enemyMovementBuffer = floor(random(20.0f, 100.0f));
-float elaspedEnemyMovementFrames = 0.0f;
-
-void changeMovement() {    
-    if(enemyMovementState == EnemyMovementState::LEFT) {
+void changeMovement(Enemy& enemy) {    
+    if(enemy.enemyMovementState == EnemyMovementState::LEFT) {
         // printf("changing to right\n");
-        enemyMovementState = EnemyMovementState::RIGHT;
+        switchEnemyMovementState(enemy, EnemyMovementState::RIGHT);
     }
-    else if(enemyMovementState == EnemyMovementState::RIGHT) {
+    else if(enemy.enemyMovementState == EnemyMovementState::RIGHT) {
         // printf("changing to left\n");
-        enemyMovementState = EnemyMovementState::LEFT;
+        switchEnemyMovementState(enemy, EnemyMovementState::LEFT);
     }
-    else if(enemyMovementState == EnemyMovementState::IDLE) {
-        enemyMovementState = EnemyMovementState::RIGHT;
+    else if(enemy.enemyMovementState == EnemyMovementState::IDLE) {
+        switchEnemyMovementState(enemy, EnemyMovementState::RIGHT);
     }
 }
 
-void moveEnemy() {
-    // printf("uhm: %f, jk: %f\n", elaspedEnemyMovementFrames, enemyMovementBuffer);
-    // printf("jk: %f\n", enemyMovementBuffer);
-    // printf("buff: %f, ef: %f, mod: %f\n", enemyMovementBuffer, elaspedEnemyMovementFrames, fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
-    if(fmod(elaspedEnemyMovementFrames, enemyMovementBuffer) == 0.0f) {
-        // printf("fm: %f\n", fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
-        elaspedEnemyMovementFrames = 0;
+void moveEnemy(Enemy& enemy) {
+    // printf("uhm: %f, jk: %f\n", enemy.elaspedEnemyMovementFrames, enemy.enemyMovementBuffer);
+    // printf("jk: %f\n", enemy.enemyMovementBuffer);
+    // printf("buff: %f, ef: %f, mod: %f\n", enemy.enemyMovementBuffer, enemy.elaspedEnemyMovementFrames, fmod(enemy.elaspedEnemyMovementFrames, enemy.enemyMovementBuffer));
+    if(fmod(enemy.elaspedEnemyMovementFrames, enemy.enemyMovementBuffer) == 0.0f) {
+        // printf("fm: %f\n", fmod(enemy.elaspedEnemyMovementFrames, enemy.enemyMovementBuffer));
+        enemy.elaspedEnemyMovementFrames = 0;
 
-        enemyMovementBuffer = floor(random(20.0f, 100.0f));
+        enemy.enemyMovementBuffer = floor(random(20.0f, 100.0f));
 
-        changeMovement();
+        changeMovement(enemy);
     }
 
-    ++elaspedEnemyMovementFrames;
+    ++enemy.elaspedEnemyMovementFrames;
 }

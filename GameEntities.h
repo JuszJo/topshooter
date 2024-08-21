@@ -1,7 +1,7 @@
 struct GameEntities {
     // GAME ENTITIES
     std::vector<Entity> player;
-    std::vector<Entity> enemies;
+    std::vector<Enemy> enemies;
     std::vector<Bullet> bullets;
 };
 
@@ -17,7 +17,7 @@ void removeInactive(GameEntities& gameEntities) {
     }
 
     for(size_t i = 0; i < gameEntities.enemies.size(); ++i) {
-        if(gameEntities.enemies.at(i).active == false) {
+        if(gameEntities.enemies.at(i).entity.active == false) {
             gameEntities.enemies.erase(gameEntities.enemies.begin() + i);
             
             --i;
