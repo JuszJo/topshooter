@@ -34,12 +34,12 @@ void changeMovement() {
 void moveEnemy() {
     // printf("uhm: %f, jk: %f\n", elaspedEnemyMovementFrames, enemyMovementBuffer);
     // printf("jk: %f\n", enemyMovementBuffer);
-    // printf("buff: %f, ef: %f, mod: %f\n", enemyMovementBuffer, elaspedEnemyMovementFrames, fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
+    printf("buff: %f, ef: %f, mod: %f\n", enemyMovementBuffer, elaspedEnemyMovementFrames, fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
     if(fmod(elaspedEnemyMovementFrames, enemyMovementBuffer) == 0.0f) {
-        // printf("fm: %f\n", fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
+        printf("fm: %f\n", fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
         elaspedEnemyMovementFrames = 0;
 
-        enemyMovementBuffer = floor(random(0.0f, 100.0f));
+        enemyMovementBuffer = floor(random(20.0f, 100.0f));
 
         changeMovement();
     }
