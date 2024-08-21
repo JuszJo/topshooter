@@ -14,7 +14,7 @@ void seekPlayer(Entity& enemy, Entity& player) {
     }
 }
 
-float enemyMovementBuffer = floor(random(0.0f, 100.0f));
+float enemyMovementBuffer = floor(random(20.0f, 100.0f));
 float elaspedEnemyMovementFrames = 0.0f;
 
 void changeMovement() {    
@@ -34,8 +34,9 @@ void changeMovement() {
 void moveEnemy() {
     // printf("uhm: %f, jk: %f\n", elaspedEnemyMovementFrames, enemyMovementBuffer);
     // printf("jk: %f\n", enemyMovementBuffer);
+    // printf("buff: %f, ef: %f, mod: %f\n", enemyMovementBuffer, elaspedEnemyMovementFrames, fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
     if(fmod(elaspedEnemyMovementFrames, enemyMovementBuffer) == 0.0f) {
-        printf("fm: %f\n", fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
+        // printf("fm: %f\n", fmod(elaspedEnemyMovementFrames, enemyMovementBuffer));
         elaspedEnemyMovementFrames = 0;
 
         enemyMovementBuffer = floor(random(0.0f, 100.0f));
