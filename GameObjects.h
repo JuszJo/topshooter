@@ -24,6 +24,8 @@ struct ShootBuffer {
 
 #include "GameEntities.h"
 
+#include "Level.h"
+
 #include "GameEvents.h"
 
 #include "Collision.h"

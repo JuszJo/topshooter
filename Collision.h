@@ -105,6 +105,7 @@ void collisionUpdate(GameEntities& gameEntities) {
     // ENEMY BULLET
     for(Enemy& enemy : gameEntities.enemies) {
         for(Bullet& bullet : gameEntities.bullets) {
+            // printf("owner: %d, x: %f, y: %f\n", bullet.owner, bullet.entity.position.x, bullet.entity.position.y);
             if(enemy.entity.gameObjectType == bullet.owner) break;
 
             float x1 = enemy.entity.position.x;
@@ -116,8 +117,11 @@ void collisionUpdate(GameEntities& gameEntities) {
             float y2 = bullet.entity.position.y;
             float w2 = bullet.entity.size.x;
             float h2 = bullet.entity.size.y;
+
+            // printf("x: %f, y: %f\n", x2, y2);
             
             bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
+
 
             if(collisionOccured) {
                 // printf("collision\n");

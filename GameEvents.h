@@ -25,7 +25,11 @@ void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
 
         setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
 
+        // printf("created bullet, owner: %d\n", bullet.owner);
+
         bullets.push_back(bullet);
+
+        // printf("size: %d\n", bullets.size());
     }
 
     if(!playerShootBuffer.ready) {
@@ -56,7 +60,11 @@ void enemyShoot(Enemy& enemy, std::vector<Bullet>& bullets) {
 
         setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
 
+        // printf("enemy created bullet, owner: %d\n", bullet.owner);
+
         bullets.push_back(bullet);
+
+        // printf("size: %d\n", bullets.size());
     }
 
     if(!enemy.enemyShootBuffer.ready) {
@@ -66,6 +74,7 @@ void enemyShoot(Enemy& enemy, std::vector<Bullet>& bullets) {
 
 void enemyBulletCollision(Enemy& enemy, Bullet& bullet) {
     // ENEMY
+    enemy.entity.active = false;
 
     // BULLET
     bullet.entity.active = false;
@@ -76,4 +85,23 @@ void enemyBulletCollision(Enemy& enemy, Bullet& bullet) {
 
 void bulletWallCollision(Bullet& bullet) {
     bullet.entity.active = false;
+}
+
+
+// LEVEL
+
+void checkNextLevel(GameEntities& gameEntities) {
+    int enemyTotal = gameEntities.enemies.size();
+
+    if(enemyTotal == 0) {
+        Level nextLevel = {++currentLevel.enemyTotal};
+
+        currentLevel = nextLevel;
+
+        for(int i = 0; i < nextLevel.enemyTotal; ++i) {
+            Enemy enemy = createEnemy();
+
+            gameEntities.enemies.push_back(enemy);
+        }
+    }
 }

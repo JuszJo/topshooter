@@ -13,13 +13,13 @@ Game createGame() {
 
     Entity square = createSquare();
     Enemy enemy = createEnemy();
-    Enemy enemy2 = createEnemy();
+    // Enemy enemy2 = createEnemy();
 
-    setPosition(&enemy2.entity, glm::vec3(10.0f, 430.0f, 0.0f));
+    // setPosition(&enemy2.entity, glm::vec3(10.0f, 430.0f, 0.0f));
 
     game.gameEntities.player.push_back(square);
     game.gameEntities.enemies.push_back(enemy);
-    game.gameEntities.enemies.push_back(enemy2);
+    // game.gameEntities.enemies.push_back(enemy2);
 
     return game;
 }
@@ -52,6 +52,8 @@ void GameUpdate(Game& game) {
     collisionUpdate(game.gameEntities);
 
     removeInactive(game.gameEntities);
+
+    checkNextLevel(game.gameEntities);
 
     // printf("b size: %d\n", game.gameEntities.bullets.size());
 }
