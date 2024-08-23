@@ -25,7 +25,9 @@ Game createGame() {
 }
 
 void GameUpdate(Game& game) {
+    // printf("player before shoot: %d\n", game.gameEntities.bullets.size());
     playerShoot(game.gameEntities.player.at(0), game.gameEntities.bullets);
+    // printf("player after shoot: %d\n", game.gameEntities.bullets.size());
 
     for(Entity& player : game.gameEntities.player) {
         updateSquare(&game.gameEntities.player.at(0));
@@ -34,7 +36,9 @@ void GameUpdate(Game& game) {
     for(Enemy& enemy : game.gameEntities.enemies) {
         moveEnemy(enemy);
 
+        // printf("enemy before shoot: %d\n", game.gameEntities.bullets.size());
         enemyShoot(enemy, game.gameEntities.bullets);
+        // printf("enemy after shoot: %d\n", game.gameEntities.bullets.size());
 
         seekPlayer(enemy, game.gameEntities.player.at(0));
 
@@ -50,6 +54,10 @@ void GameUpdate(Game& game) {
     checkWallCollision(game.gameEntities);
 
     collisionUpdate(game.gameEntities);
+
+    /* for(Bullet bullet : game.gameEntities.bullets) {
+        printf("ENUM: %d\n\n", bullet.owner);
+    } */
 
     removeInactive(game.gameEntities);
 

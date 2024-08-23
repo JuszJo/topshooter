@@ -27,7 +27,8 @@ void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
 
         // printf("created bullet, owner: %d\n", bullet.owner);
 
-        bullets.push_back(bullet);
+        // bullets.push_back(bullet);
+        addBullet(bullet, bullets);
 
         // printf("size: %d\n", bullets.size());
     }
@@ -62,7 +63,8 @@ void enemyShoot(Enemy& enemy, std::vector<Bullet>& bullets) {
 
         // printf("enemy created bullet, owner: %d\n", bullet.owner);
 
-        bullets.push_back(bullet);
+        // bullets.push_back(bullet);
+        addBullet(bullet, bullets);
 
         // printf("size: %d\n", bullets.size());
     }

@@ -79,6 +79,11 @@ void checkWallCollision(GameEntities& gameEntities) {
 } */
 
 void collisionUpdate(GameEntities& gameEntities) {
+    /* printf("START\n");
+    for(Bullet bullet : gameEntities.bullets) {
+        printf("ENUM: %d\n", bullet.owner);
+    }
+    printf("END\n"); */
     // PLAYER BULLET
     for(Entity& player : gameEntities.player) {
         for(Bullet& bullet : gameEntities.bullets) {
@@ -97,15 +102,22 @@ void collisionUpdate(GameEntities& gameEntities) {
             bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
 
             if(collisionOccured) {
-                playerBulletCollision(player, bullet);
+                // playerBulletCollision(player, bullet);
             }
         }
     }
+
+    /* printf("BULLET START\n");
+    for(Bullet bullet : gameEntities.bullets) {
+        printf("ENUM: %d\n", bullet.owner);
+    }
+    printf("END\n"); */
 
     // ENEMY BULLET
     for(Enemy& enemy : gameEntities.enemies) {
         for(Bullet& bullet : gameEntities.bullets) {
             // printf("owner: %d, x: %f, y: %f\n", bullet.owner, bullet.entity.position.x, bullet.entity.position.y);
+            printf("owner: %d\n", bullet.owner);
             if(enemy.entity.gameObjectType == bullet.owner) break;
 
             float x1 = enemy.entity.position.x;
