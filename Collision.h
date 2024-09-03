@@ -87,7 +87,7 @@ void collisionUpdate(GameEntities& gameEntities) {
     // PLAYER BULLET
     for(Entity& player : gameEntities.player) {
         for(Bullet& bullet : gameEntities.bullets) {
-            if(player.gameObjectType == bullet.owner) break;
+            if(player.gameObjectType == bullet.owner) continue;
 
             float x1 = player.position.x;
             float y1 = player.position.y;
