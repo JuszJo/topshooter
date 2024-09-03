@@ -23,6 +23,8 @@ void playerShoot(Entity& player, std::vector<Bullet>& bullets) {
         float x = player.position.x + (player.size.x / 2.0f) - (bullet.entity.size.x / 2.0f);
         float y = player.position.y + player.size.y + 5.0f;
 
+        setColor(&bullet.entity, glm::vec3(0.2f, 0.4f, 0.8f));
+
         setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
 
         // printf("created bullet, owner: %d\n", bullet.owner);
@@ -58,6 +60,8 @@ void enemyShoot(Enemy& enemy, std::vector<Bullet>& bullets) {
 
         float x = enemy.entity.position.x + (enemy.entity.size.x / 2.0f) - (bullet.entity.size.x / 2.0f);
         float y = enemy.entity.position.y - 5.0f;
+
+        setColor(&bullet.entity, glm::vec3(0.6f, 0.1f, 0.2f));
 
         setPosition(&bullet.entity, glm::vec3(x, y, 0.0f));
 

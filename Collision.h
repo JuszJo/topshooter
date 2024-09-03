@@ -102,23 +102,25 @@ void collisionUpdate(GameEntities& gameEntities) {
             bool collisionOccured = didCollide(x1, y1, w1, h1, x2, y2, w2, h2);
 
             if(collisionOccured) {
-                // playerBulletCollision(player, bullet);
+                playerBulletCollision(player, bullet);
             }
         }
     }
 
-    /* printf("BULLET START\n");
-    for(Bullet bullet : gameEntities.bullets) {
-        printf("ENUM: %d\n", bullet.owner);
-    }
-    printf("END\n"); */
+    // printf("BULLET START\n");
+    // for(Bullet bullet : gameEntities.bullets) {
+    //     printf("ENUM: %d\n", bullet.owner);
+    // }
+    // printf("END, SIZE AT END = %d\n", gameEntities.bullets.size());
 
     // ENEMY BULLET
     for(Enemy& enemy : gameEntities.enemies) {
         for(Bullet& bullet : gameEntities.bullets) {
             // printf("owner: %d, x: %f, y: %f\n", bullet.owner, bullet.entity.position.x, bullet.entity.position.y);
-            printf("owner: %d\n", bullet.owner);
-            if(enemy.entity.gameObjectType == bullet.owner) break;
+            // printf("owner: %d\n", bullet.owner);
+            // printVec3("color", bullet.entity.color);
+            // printf("SIZE IN LOOP = %d\n", gameEntities.bullets.size());
+            if(enemy.entity.gameObjectType == bullet.owner) continue;
 
             float x1 = enemy.entity.position.x;
             float y1 = enemy.entity.position.y;
@@ -141,4 +143,6 @@ void collisionUpdate(GameEntities& gameEntities) {
             }
         }
     }
+
+    // printf("FINAL, SIZE AT END = %d\n", gameEntities.bullets.size());
 }
