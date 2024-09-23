@@ -33,7 +33,7 @@ Game createGame() {
 
 void GameUpdate(Game& game) {
     // printf("player before shoot: %d\n", game.gameEntities.bullets.size());
-    playerShoot(game.gameEntities.player.at(0), game.gameEntities.bullets);
+    //playerShoot(game.gameEntities.player.at(0), game.gameEntities.bullets);
     // printf("player after shoot: %d\n", game.gameEntities.bullets.size());
 
     for(Entity& player : game.gameEntities.player) {
