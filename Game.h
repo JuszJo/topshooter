@@ -24,6 +24,13 @@ Game createGame() {
     return game;
 }
 
+// TODO: NEW GAME IDEA
+// INSTEAD OF SHOOTER TYPE
+// MAKE DOGDGING BULLETS TYPE WITH TIMERS
+// GIVE PLAYER 3 LIVES
+// WHEN TIMER ELAPSES REFILL AND MAKE NEXT LEVEL MORE DIFFICULT
+// MAYBE ADD BOOSTS AFTER FINISHING LEVEL
+
 void GameUpdate(Game& game) {
     // printf("player before shoot: %d\n", game.gameEntities.bullets.size());
     playerShoot(game.gameEntities.player.at(0), game.gameEntities.bullets);
